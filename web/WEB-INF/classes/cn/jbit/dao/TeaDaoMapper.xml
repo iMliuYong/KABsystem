@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.jbit.dao.TeaDao">
+<resultMap type="cn.jbit.entity.Tea" id="TeaResult">
+<id property="id" column="id"></id>
+<result property="username" column="username"/>
+<result property="password" column="password"/>
+<result property="birthday" column="birthday"/>
+ <result property="level" column="level"/>
+<result property="sex" column="sex"/>
+ <result property="college" column="college"/>
+ <result property="major" column="major"/>
+ <result property="education" column="education"/>
+ <result property="birthnum" column="birthnum"/>
+ <result property="subject" column="subject"/>
+ <result property="joinclass" column="joinclass"/>
+ <result property="phonenum" column="phonenum"/>
+ <result property="email" column="email"/>
+ <result property="address" column="address"/>
+
+</resultMap>
+ <select id="validateUser" resultMap="TeaResult">
+  SELECT * FROM teacher WHERE username=#{username} AND password=#{password}
+ </select>
+
+ <insert id="addTea" parameterType="Tea">
+  INSERT INTO teacher (username,password,email) VALUES (#{username},#{password},#{email})
+ </insert>
+
+ <select id="getAllTeaById" resultMap="TeaResult">
+  SELECT *FROM teacher WHERE id=#{id}
+ </select>
+<update id="updateById" parameterType="Tea">
+  update  teacher set username=#{username},birthday=#{birthday},sex=#{sex},education=#{education},birthnum=#{birthday},subject=#{subject},joinclass=#{joinclass},phonenum=#{phonenum},email=#{email},address=#{address} where id=#{id}
+ </update>
+
+ <update id="updatePassword" parameterType="Tea">
+  update  teacher set password=#{password} where id=#{id}
+ </update>
+
+ <update id="updateMibao" parameterType="Tea">
+  update  teacher set father=#{father} where id=#{id}
+ </update>
+
+ <!--
+ <select id="getAllBooks" resultMap="BookResult">
+   SELECT * FROM bookmanage
+  </select>
+
+ <select id="getAllBookById" resultMap="BookResult">
+  SELECT *FROM bookmanage WHERE b_id=#{b_id}
+ </select>
+
+  <delete id="deleteBookById" parameterType="int">
+  delete from bookmanage where b_id=#{b_id}
+  </delete>
+
+  <select id="countAll" resultType="int">
+  select count(*) from bookmanage
+  </select>
+
+  <select id="getBookByPage" parameterType="hashmap" resultMap="BookResult" >
+  SELECT * FROM bookmanage limit #{startRow}, #{pageSize}
+  </select>-->
+
+
+  
+ </mapper>
